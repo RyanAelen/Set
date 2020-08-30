@@ -45,16 +45,4 @@ public class MainClass extends PApplet {
         pop();
     }
 
-    public void maakkaarten() {
-        allekaarten = new ArrayList<>();
-        for (int i = 0; i < EHoeveelheid.values().length; i++) {
-            for (int j = 0; j < EKleur.values().length; j++) {
-                for (int k = 0; k < EVorm.values().length; k++) {
-                    for (int l = 0; l < EVulling.values().length; l++) {
-                        allekaarten.add(new Kaart(EHoeveelheid.values()[i], EKleur.values()[j], EVorm.values()[k], EVulling.values()[l], this));
-                    }
-                }
-            }
-        }
-    }
 }
