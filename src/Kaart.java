@@ -121,4 +121,128 @@ public class Kaart {
             }
         }
     }//end function
+
+    /**
+     * @param app De main ClassApp
+     * @return een arraylist met de 81 mogelijken aan kaarten
+     */
+    static public ArrayList<Kaart> maakkaarten(@NotNull MainClass app) {
+        if (app == null) {
+            throw new IllegalArgumentException("Het maken van alle kaarten is niet gelukt om dat de app null is");
+        }
+        ArrayList<Kaart> allekaarten = new ArrayList<>();
+        for (int i = 0; i < EHoeveelheid.values().length; i++) {
+            for (int j = 0; j < EKleur.values().length; j++) {
+                for (int k = 0; k < EVorm.values().length; k++) {
+                    for (int l = 0; l < EVulling.values().length; l++) {
+                        allekaarten.add(new Kaart(EHoeveelheid.values()[i], EKleur.values()[j], EVorm.values()[k], EVulling.values()[l], app));
+                    }
+                }
+            }
+        }
+        return allekaarten;
+    }
+
+    /**
+     * @param kaarten Array met minimaal 3 Kaarten er in.
+     * @return True Wanner er een set is, False Waneer er geen set is.
+     */
+    static public boolean checkIfItsASet(Kaart[] kaarten) {
+        if (kaarten.length == 3) {
+            for (int i = 0; i < 3; i++) {
+                if (kaarten[i] == null) {
+                    throw new IllegalArgumentException("Kaart op index " + i + " in de array is null");
+                }
+            }
+            return checkIfItsASet(kaarten[0], kaarten[1], kaarten[2]);
+        }
+        throw new IllegalArgumentException("Kaart Array met " + kaarten.length + " grote is niet toegestaan.");
+    }
+
+    /**
+     * @param een  eerste kaart
+     * @param twee tweede kaart
+     * @param drie derde kaart
+     * @return True Wanner er een set is, False Waneer er geen set is.
+     * @throws IllegalArgumentException Wanneer er een null word mee gegeven.
+     */
+    static public boolean checkIfItsASet(@NotNull Kaart een, @NotNull Kaart twee, @NotNull Kaart drie) {
+        if (een == null || twee == null || drie == null) {
+            throw new IllegalArgumentException("Een of meer van de kaarten zijn NULL");
+        }
+        return (nummersEenSet(een, twee, drie) && kleurEenSet(een, twee, drie) && vormEenSet(een, twee, drie) && vullingEenSet(een, twee, drie));
+    }
+
+    /**
+     * @param een  eerste kaart
+     * @param twee tweede kaart
+     * @param drie derde kaart
+     * @return True Wanner De nummers een set vormen.
+     */
+    static public boolean nummersEenSet(Kaart een, Kaart twee, Kaart drie) {
+        PApplet.println("" + een.hoeveelheid + twee.hoeveelheid + drie.hoeveelheid);
+        boolean temp = false;
+        if (een.hoeveelheid == twee.hoeveelheid & een.hoeveelheid == drie.hoeveelheid) {
+            temp = true;
+        }
+        if (een.hoeveelheid != twee.hoeveelheid && twee.hoeveelheid != drie.hoeveelheid && drie.hoeveelheid != een.hoeveelheid) {
+            temp = true;
+        }
+        return temp;
+    }
+
+    /**
+     * @param een  eerste kaart
+     * @param twee tweede kaart
+     * @param drie derde kaart
+     * @return True wanneer de kleuren een set formen.
+     */
+    static public boolean kleurEenSet(Kaart een, Kaart twee, Kaart drie) {
+        PApplet.println("" + een.kleur + twee.kleur + drie.kleur);
+        boolean temp = false;
+        if (een.kleur == twee.kleur & een.kleur == drie.kleur) {
+            temp = true;
+        }
+        if (een.kleur != twee.kleur && twee.kleur != drie.kleur && drie.kleur != een.kleur) {
+            temp = true;
+        }
+        return temp;
+    }
+
+    /**
+     * @param een  eerste kaart
+     * @param twee tweede kaart
+     * @param drie derde kaart
+     * @return True Wanneer de vorm een set vormt
+     */
+    static public boolean vormEenSet(Kaart een, Kaart twee, Kaart drie) {
+        PApplet.println("" + een.vorm + twee.vorm + drie.vorm);
+        boolean temp = false;
+        if (een.vorm == twee.vorm & een.vorm == drie.vorm) {
+            temp = true;
+        }
+        if (een.vorm != twee.vorm && twee.vorm != drie.vorm && drie.vorm != een.vorm) {
+            temp = true;
+        }
+        return temp;
+    }
+
+    /**
+     * @param een  eerste kaart
+     * @param twee tweede kaart
+     * @param drie derde kaart
+     * @return True Wanneer de vulling een set vormt
+     */
+    static public boolean vullingEenSet(Kaart een, Kaart twee, Kaart drie) {
+        PApplet.println("" + een.vulling + twee.vulling + drie.vulling);
+        boolean temp = false;
+        if (een.vulling == twee.vulling & een.vulling == drie.vulling) {
+            temp = true;
+        }
+        if (een.vulling != twee.vulling && twee.vulling != drie.vulling && drie.vulling != een.vulling) {
+            temp = true;
+        }
+        return temp;
+    }
+
 }
