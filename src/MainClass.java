@@ -27,9 +27,23 @@ public class MainClass extends PApplet {
     @Override
     public void draw() {
         background(0);
-
+        drawAllekaarten();
     }
-}
+
+    private void drawAllekaarten() {
+        push();
+        int k = 0;
+        scale(0.2f);
+        for (int i = 0; i < (int) sqrt(allekaarten.size()); i++) {
+            for (int j = 0; j < (int) sqrt(allekaarten.size()); j++) {
+                if (k < allekaarten.size()) {
+                    shape(allekaarten.get(k).getPShape(), i * 100, j * 255);
+                    k++;
+                }
+            }
+        }
+        pop();
+    }
 
     public void maakkaarten() {
         allekaarten = new ArrayList<>();
