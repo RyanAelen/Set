@@ -21,7 +21,7 @@ public class MainClass extends PApplet {
         surface.setResizable(true);
         surface.setTitle(this.getClass().getName());
         frameRate(144);
-
+        maakkaarten();
     }
 
     @Override
