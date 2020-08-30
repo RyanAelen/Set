@@ -21,7 +21,7 @@ public class MainClass extends PApplet {
         surface.setResizable(true);
         surface.setTitle(this.getClass().getName());
         frameRate(144);
-        alleKaarten = Kaart.maakkaarten(this);
+        alleKaarten = Kaart.maakKaarten(this);
         println(Kaart.checkIfItsASet(alleKaarten.get(1), alleKaarten.get(53), alleKaarten.get(66)));
         Kaart[] testkaart = new Kaart[3];
         testkaart[0] = new Kaart(EHoeveelheid.EEN, EKleur.GROEN, EVorm.VIERKANT, EVulling.VOL, this);
@@ -33,10 +33,10 @@ public class MainClass extends PApplet {
     @Override
     public void draw() {
         background(0);
-        drawAllekaarten();
+        drawAlleKaarten();
     }
 
-    private void drawAllekaarten() {
+    private void drawAlleKaarten() {
         push();
         int k = 0;
         scale(0.2f);

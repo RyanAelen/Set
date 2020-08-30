@@ -13,7 +13,7 @@ public class Kaart {
 
     /**
      * @param hoeveelheid Bepaal nummer
-     * @param kleur       Bpaal de kleur
+     * @param kleur       Bepaal de kleur
      * @param vorm        Bepaal de vorm
      * @param vulling     Bepaal de vulling
      */
@@ -26,12 +26,12 @@ public class Kaart {
             kaart = app.createShape(app.GROUP);
             creatShapeKaart(app);
         } else {
-            throw new NullPointerException("De app Mainclass is null in Constructor Kaart class");
+            throw new NullPointerException("De app MainClass is null in Constructor Kaart class");
         }
     }
 
     /**
-     * @return Pshape of een kaart
+     * @return PShape of een kaart
      */
     public PShape getPShape() {
         return kaart;
@@ -124,28 +124,28 @@ public class Kaart {
 
     /**
      * @param app De main ClassApp
-     * @return een arraylist met de 81 mogelijken aan kaarten
+     * @return een arraylist met de 81 mogelijkheden aan kaarten
      */
-    static public ArrayList<Kaart> maakkaarten(@NotNull MainClass app) {
+    static public ArrayList<Kaart> maakKaarten(@NotNull MainClass app) {
         if (app == null) {
             throw new IllegalArgumentException("Het maken van alle kaarten is niet gelukt om dat de app null is");
         }
-        ArrayList<Kaart> allekaarten = new ArrayList<>();
+        ArrayList<Kaart> alleKaarten = new ArrayList<>();
         for (int i = 0; i < EHoeveelheid.values().length; i++) {
             for (int j = 0; j < EKleur.values().length; j++) {
                 for (int k = 0; k < EVorm.values().length; k++) {
                     for (int l = 0; l < EVulling.values().length; l++) {
-                        allekaarten.add(new Kaart(EHoeveelheid.values()[i], EKleur.values()[j], EVorm.values()[k], EVulling.values()[l], app));
+                        alleKaarten.add(new Kaart(EHoeveelheid.values()[i], EKleur.values()[j], EVorm.values()[k], EVulling.values()[l], app));
                     }
                 }
             }
         }
-        return allekaarten;
+        return alleKaarten;
     }
 
     /**
      * @param kaarten Array met minimaal 3 Kaarten er in.
-     * @return True Wanner er een set is, False Waneer er geen set is.
+     * @return True Wanner er een set is, False Wanneer er geen set is.
      */
     static public boolean checkIfItsASet(Kaart[] kaarten) {
         if (kaarten.length == 3) {
@@ -163,7 +163,7 @@ public class Kaart {
      * @param een  eerste kaart
      * @param twee tweede kaart
      * @param drie derde kaart
-     * @return True Wanner er een set is, False Waneer er geen set is.
+     * @return True Wanner er een set is, False Wanneer er geen set is.
      * @throws IllegalArgumentException Wanneer er een null word mee gegeven.
      */
     static public boolean checkIfItsASet(@NotNull Kaart een, @NotNull Kaart twee, @NotNull Kaart drie) {
