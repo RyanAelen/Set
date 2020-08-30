@@ -7,7 +7,7 @@ public class MainClass extends PApplet {
         PApplet.main("MainClass", args);
     }
 
-    ArrayList<Kaart> allekaarten;
+    ArrayList<Kaart> alleKaarten;
 
     @Override
     public void settings() {
@@ -21,8 +21,8 @@ public class MainClass extends PApplet {
         surface.setResizable(true);
         surface.setTitle(this.getClass().getName());
         frameRate(144);
-        allekaarten = Kaart.maakkaarten(this);
-        println(Kaart.checkIfItsASet(allekaarten.get(1), allekaarten.get(53), allekaarten.get(66)));
+        alleKaarten = Kaart.maakkaarten(this);
+        println(Kaart.checkIfItsASet(alleKaarten.get(1), alleKaarten.get(53), alleKaarten.get(66)));
         Kaart[] testkaart = new Kaart[3];
         testkaart[0] = new Kaart(EHoeveelheid.EEN, EKleur.GROEN, EVorm.VIERKANT, EVulling.VOL, this);
         testkaart[1] = new Kaart(EHoeveelheid.EEN, EKleur.GROEN, EVorm.VIERKANT, EVulling.VOL, this);
@@ -40,10 +40,10 @@ public class MainClass extends PApplet {
         push();
         int k = 0;
         scale(0.2f);
-        for (int i = 0; i < (int) sqrt(allekaarten.size()); i++) {
-            for (int j = 0; j < (int) sqrt(allekaarten.size()); j++) {
-                if (k < allekaarten.size()) {
-                    shape(allekaarten.get(k).getPShape(), j * 100, i * 255);
+        for (int i = 0; i < (int) sqrt(alleKaarten.size()); i++) {
+            for (int j = 0; j < (int) sqrt(alleKaarten.size()); j++) {
+                if (k < alleKaarten.size()) {
+                    shape(alleKaarten.get(k).getPShape(), j * 100, i * 255);
                     fill(0);
                     textSize(60);
                     text("" + k, j * 100, i * 255 + 200);
