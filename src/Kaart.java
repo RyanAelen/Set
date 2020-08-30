@@ -30,10 +30,16 @@ public class Kaart {
         }
     }
 
+    /**
+     * @return Pshape of een kaart
+     */
     public PShape getPShape() {
         return kaart;
     }
 
+    /**
+     * @param app De MainClass App
+     */
     void creatShapeKaart(MainClass app) {
         PShape[] figuren;
         PShape background;
