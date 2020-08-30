@@ -43,7 +43,10 @@ public class MainClass extends PApplet {
         for (int i = 0; i < (int) sqrt(allekaarten.size()); i++) {
             for (int j = 0; j < (int) sqrt(allekaarten.size()); j++) {
                 if (k < allekaarten.size()) {
-                    shape(allekaarten.get(k).getPShape(), i * 100, j * 255);
+                    shape(allekaarten.get(k).getPShape(), j * 100, i * 255);
+                    fill(0);
+                    textSize(60);
+                    text("" + k, j * 100, i * 255 + 200);
                     k++;
                 }
             }
