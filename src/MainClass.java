@@ -7,6 +7,7 @@ public class MainClass extends PApplet {
         PApplet.main("MainClass", args);
     }
 
+    ArrayList<Kaart> allekaarten;
 
     @Override
     public void settings() {
