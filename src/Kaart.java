@@ -17,13 +17,17 @@ public class Kaart {
      * @param vorm        Bepaal de vorm
      * @param vulling     Bepaal de vulling
      */
-    Kaart(EHoeveelheid hoeveelheid, EKleur kleur, EVorm vorm, EVulling vulling, MainClass app) {
-        this.hoeveelheid = hoeveelheid;
-        this.kleur = kleur;
-        this.vorm = vorm;
-        this.vulling = vulling;
-        kaart = app.createShape(app.GROUP);
-        creatShapeKaart(app);
+    Kaart(@NotNull EHoeveelheid hoeveelheid, @NotNull EKleur kleur, @NotNull EVorm vorm, @NotNull EVulling vulling, @NotNull MainClass app) {
+        if (app != null) {
+            this.hoeveelheid = hoeveelheid;
+            this.kleur = kleur;
+            this.vorm = vorm;
+            this.vulling = vulling;
+            kaart = app.createShape(app.GROUP);
+            creatShapeKaart(app);
+        } else {
+            throw new NullPointerException("De app Mainclass is null in Constructor Kaart class");
+        }
     }
 
     public PShape getPShape() {
