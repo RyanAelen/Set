@@ -23,7 +23,7 @@ public class MainClass extends PApplet {
         frameRate(144);
         allekaarten = Kaart.maakkaarten(this);
         println(Kaart.checkIfItsASet(allekaarten.get(1), allekaarten.get(53), allekaarten.get(66)));
-        Kaart[] testkaart = new Kaart[4];
+        Kaart[] testkaart = new Kaart[3];
         testkaart[0] = new Kaart(EHoeveelheid.EEN, EKleur.GROEN, EVorm.VIERKANT, EVulling.VOL, this);
         testkaart[1] = new Kaart(EHoeveelheid.EEN, EKleur.GROEN, EVorm.VIERKANT, EVulling.VOL, this);
         testkaart[2] = new Kaart(EHoeveelheid.EEN, EKleur.GROEN, EVorm.VIERKANT, EVulling.VOL, this);
