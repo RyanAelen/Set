@@ -1,3 +1,5 @@
+import com.sun.istack.internal.NotNull;
+import processing.core.PApplet;
 import processing.core.PShape;
 
 public class Kaart {
