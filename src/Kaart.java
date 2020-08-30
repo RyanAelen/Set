@@ -2,6 +2,8 @@ import com.sun.istack.internal.NotNull;
 import processing.core.PApplet;
 import processing.core.PShape;
 
+import java.util.ArrayList;
+
 public class Kaart {
     public EHoeveelheid hoeveelheid;
     public EKleur kleur;
