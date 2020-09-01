@@ -37,20 +37,22 @@ public class MainClass extends PApplet {
     @Override
     public void draw() {
         background(0);
+        rotateX((radians(map(mouseY, 0, height, -360, 360))));
+        scale(map(mouseX, 0, width, 0, 2));
         drawAlleKaarten();
     }
 
     private void drawAlleKaarten() {
         push();
         int k = 0;
-        scale(0.2f);
+//        scale(0.2f);
         for (int i = 0; i < (int) sqrt(alleKaarten.size()); i++) {
             for (int j = 0; j < (int) sqrt(alleKaarten.size()); j++) {
                 if (k < alleKaarten.size()) {
                     shape(alleKaarten.get(k).getPShape(), j * 100, i * 255);
                     fill(0);
                     textSize(60);
-                    text("" + k, j * 100, i * 255 + 200);
+                    text("" + k, j * 100, i * 255 + 200, 0.1f);
                     k++;
                 }
             }
