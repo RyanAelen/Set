@@ -1,4 +1,3 @@
-import com.sun.istack.internal.NotNull;
 import processing.core.PApplet;
 import processing.core.PShape;
 
@@ -17,7 +16,7 @@ public class Kaart {
      * @param vorm        Bepaal de vorm
      * @param vulling     Bepaal de vulling
      */
-    Kaart(@NotNull EHoeveelheid hoeveelheid, @NotNull EKleur kleur, @NotNull EVorm vorm, @NotNull EVulling vulling, @NotNull MainClass app) {
+    Kaart(EHoeveelheid hoeveelheid, EKleur kleur, EVorm vorm, EVulling vulling, MainClass app) {
         if (app != null) {
             this.hoeveelheid = hoeveelheid;
             this.kleur = kleur;
@@ -43,80 +42,33 @@ public class Kaart {
     void creatShapeKaart(MainClass app) {
         PShape[] figuren;
         PShape background;
+        float size = 50;
         int r, g, b, a;
         if (kaart != null && app != null) {
-            r = 0;
-            g = 0;
-            b = 0;
-            a = 255;
-            switch (kleur) {
-                case ROOD:
-                    r = 255;
-                    break;
-                case GROEN:
-                    g = 255;
-                    break;
-                case PAARS:
-                    r = 255;
-                    b = 255;
-                    break;
-            }
-            switch (vulling) {
-                case VOL:
-                    //a is all 255
-                    break;
-                case LEEG:
-                    a = 0;
-                    break;
-                case HALFVOL:
-                    a = 128;
-                    break;
-            }
-            switch (hoeveelheid) {
-                case EEN:
-                    figuren = new PShape[1];
-                    break;
-                case TWEE:
-                    figuren = new PShape[2];
-                    break;
-                case DRIE:
-                    figuren = new PShape[3];
-                    break;
-                default:
-                    figuren = new PShape[0];
-            }
-            switch (vorm) {
-                case DRIEHOEK:
-                    for (int i = 0; i < figuren.length; i++) {
-                        figuren[i] = app.createShape(app.TRIANGLE, 0, 0, 50, 0, 25, 50);
-                        figuren[i].translate(25, i * 75 + 25);
+            r = kleur.getR();
+            g = kleur.getG();
+            b = kleur.getB();
+            a = vulling.getAlpha();
+            figuren = new PShape[hoeveelheid.getNummer()];
+            for (int i = 0; i < figuren.length; i++) {
+                switch (vorm) {
+                    case DRIEHOEK -> figuren[i] = app.createShape(app.TRIANGLE, 0, 0, size, 0, (size / 2), size);
+                    case ROND -> {
+                        app.ellipseMode(app.CORNERS);
+                        figuren[i] = app.createShape(app.ELLIPSE, 0, 0, size, size);
                     }
-
-                    break;
-                case ROND:
-                    for (int i = 0; i < figuren.length; i++) {
-                        figuren[i] = app.createShape(app.ELLIPSE, 0, 0, 50, 50);
-                        figuren[i].translate(50, i * 75 + 50);
-                    }
-
-                    break;
-                case VIERKANT:
-                    for (int i = 0; i < figuren.length; i++) {
-                        figuren[i] = app.createShape(app.RECT, 0, 0, 50, 50);
-                        figuren[i].translate(25, i * 75 + 25);
-                    }
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + vorm);
+                    case VIERKANT -> figuren[i] = app.createShape(app.RECT, 0, 0, size, size);
+                    default -> throw new IllegalStateException("Unexpected value: " + vorm);
+                }
+                figuren[i].translate((size / 2), i * (size * 1.5f) + (size / 2), 0.1f);
             }
-
-            background = app.createShape(app.RECT, 0, 0, 100, 250);
+            background = app.createShape(app.RECT, 0, 0, size * 2, size * 5);
             background.setFill(app.color(255));
             kaart.addChild(background);
             for (PShape pShape : figuren) {
                 pShape.setFill(app.color(r, g, b, a));
                 pShape.setStroke(app.color(r, g, b));
-                pShape.setStrokeWeight(3);
+                pShape.setStrokeWeight((int) size / 16f);
                 kaart.addChild(pShape);
             }
         }
@@ -126,7 +78,7 @@ public class Kaart {
      * @param app De main ClassApp
      * @return een arraylist met de 81 mogelijkheden aan kaarten
      */
-    static public ArrayList<Kaart> maakKaarten(@NotNull MainClass app) {
+    static public ArrayList<Kaart> maakKaarten(MainClass app) {
         if (app == null) {
             throw new IllegalArgumentException("Het maken van alle kaarten is niet gelukt om dat de app null is");
         }
@@ -166,7 +118,7 @@ public class Kaart {
      * @return True Wanner er een set is, False Wanneer er geen set is.
      * @throws IllegalArgumentException Wanneer er een null word mee gegeven.
      */
-    static public boolean checkIfItsASet(@NotNull Kaart een, @NotNull Kaart twee, @NotNull Kaart drie) {
+    static public boolean checkIfItsASet(Kaart een, Kaart twee, Kaart drie) {
         if (een == null || twee == null || drie == null) {
             throw new IllegalArgumentException("Een of meer van de kaarten zijn NULL");
         }
